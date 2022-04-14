@@ -131,7 +131,7 @@ function sendInputToWatson(input) {
         }
         
         else {
-          console.log(JSON.parse(text).intent == dept);
+          // console.log(JSON.parse(text).intent == dept);
           if (JSON.parse(text).intent == dept) {
             for (var i = 0; i < response_list.length; i++) {
               if (response_list[i] != JSON.parse(text).answer) {
@@ -145,6 +145,10 @@ function sendInputToWatson(input) {
               else if (response_list[i] == JSON.parse(text).answer && response_list.length == 3) {
                 setTimeout(addResponseMsg, 500, "Are you satisfied with the Chatbot's Response? Answer with 'Yes' or 'No'.");
                 break;
+              }
+
+              else {
+                addResponseMsg(JSON.parse(text).answer);
               }
             }          
           }
