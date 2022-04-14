@@ -106,7 +106,7 @@ function addMsg(msg) {
 function sendInputToWatson(input) {
   var data = data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '' },
     unknown = "I didn't quite get that.",
-    sorry = "Sorry, I am not able to detect the language you are speaking. Please try rephrasing.",
+    sorry = "Sorry, I am not able to detect the language you are asking.",
     api = "http://127.0.0.1:8000/watson-assistant/";
 
   fetch(api, {
@@ -123,8 +123,8 @@ function sendInputToWatson(input) {
         intents_list.push(JSON.parse(text).intent);
         
         if (JSON.parse(text).answer.toLowerCase() == sorry) {
-          addResponseMsg(JSON.parse(text).answer);
-          addResponseMsg("Do you want to talk with our Human Agent? please <strong>Click</strong> on either Yes or No");
+          addResponseMsg("Sorry, We could not recognize the question you've asked for. Kindly let us know if we help with anything else.");
+          addResponseMsg("In order to Transfer the same conversation to Live Agent Click from below.");
           addResponseMsg("<p onclick='transferLiveChat()'>Yes</p> / <p onclick='ask_another()'>No</p>");
           //addResponseMsg("<a href='https://live-test-772cf.web.app/' target='_blank'>Yes</a> / <a href='#' onclick='ask_another()'>No</a>");
           //addResponseMsg("<a href='#' onclick='ask_another()'>No</a>");
