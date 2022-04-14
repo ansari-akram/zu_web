@@ -122,11 +122,11 @@ function sendInputToWatson(input) {
         response_list.push(JSON.parse(text).answer);
         intents_list.push(JSON.parse(text).intent);
 
-        console.log(JSON.parse(text).answer.toLowerCase());
-        console.log(sorry);
-        console.log(JSON.parse(text).answer.toLowerCase() == sorry);
+        // console.log(JSON.parse(text).answer.toLowerCase());
+        // console.log(sorry);
+        // console.log(JSON.parse(text).answer.toLowerCase() == sorry);
         
-        if (JSON.parse(text).answer.toLowerCase() == sorry) {
+        if (JSON.parse(text).answer.toLowerCase() == sorry.toLowerCase()) {
           addResponseMsg("Sorry, We could not recognize the question you've asked for. Kindly let us know if we help with anything else.");
           addResponseMsg("In order to Transfer the same conversation to Live Agent Click from below.");
           addResponseMsg("<p onclick='transferLiveChat()'>Yes</p> / <p onclick='ask_another()'>No</p>");
