@@ -4,7 +4,7 @@ var running = false,
   name = "",
   email = "",
   dept = "",
-  server_api = '192.168.5.80/chatbot',
+  server_api = '127.0.0.1:8000',
   message_box = document.getElementById('message-box');
 var response_list = [];
 var intents_list = [];
@@ -107,7 +107,7 @@ function sendInputToWatson(input) {
   var data = data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '' },
     unknown = "I didn't quite get that.",
     sorry = "Sorry, I am not able to detect the language you are speaking. Please try rephrasing.",
-    api = "http://192.168.5.80/chatbot/watson-assistant/";
+    api = "http://127.0.0.1:8000/watson-assistant/";
 
   fetch(api, {
     method: "POST",
