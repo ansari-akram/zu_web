@@ -62,7 +62,11 @@ function addMsg(msg) {
   console.log(prev_msg);
   //console.log(document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3]);
 
-  if (msg.toLowerCase() == "yes") {
+  if (msg.toLowerCase().includes("connect to live agent")) {
+    transferLiveChat();
+  }
+
+  else if (msg.toLowerCase() == "yes") {
     if (prev_msg == "Yes / No") {
       transferLiveChat();
     }
@@ -125,7 +129,7 @@ function sendInputToWatson(input) {
         // console.log(JSON.parse(text).answer.toLowerCase());
         // console.log(sorry);
         // console.log(JSON.parse(text).answer.toLowerCase() == sorry);
-        
+
         if (JSON.parse(text).answer.toLowerCase() == sorry.toLowerCase()) {
           addResponseMsg("Sorry, We could not recognize the question you've asked for. Kindly let us know if we help with anything else.");
           addResponseMsg("In order to Transfer the same conversation to Live Agent Click from below.");
@@ -133,7 +137,7 @@ function sendInputToWatson(input) {
           //addResponseMsg("<a href='https://live-test-772cf.web.app/' target='_blank'>Yes</a> / <a href='#' onclick='ask_another()'>No</a>");
           //addResponseMsg("<a href='#' onclick='ask_another()'>No</a>");
         }
-        
+
         else {
           // console.log(JSON.parse(text).intent == dept);
           if (JSON.parse(text).intent == dept) {
@@ -145,7 +149,7 @@ function sendInputToWatson(input) {
                 intents_list.push(JSON.parse(text).intent);
                 break
               }
-    
+
               else if (response_list[i] == JSON.parse(text).answer && response_list.length == 3) {
                 setTimeout(addResponseMsg, 500, "Are you satisfied with the Chatbot's Response? Answer with 'Yes' or 'No'.");
                 break;
@@ -154,9 +158,9 @@ function sendInputToWatson(input) {
               else {
                 addResponseMsg(JSON.parse(text).answer);
               }
-            }          
+            }
           }
-  
+
           else {
             addResponseMsg("Please ask questions according to the Department You selected.");
           }
@@ -370,7 +374,7 @@ function checkForm() {
   if (validateEmail2(email)) {
     if (user_name != '' && dept != "") {
       if (document.getElementById("cred-form").classList.contains("active")) {
-        var data = { 'user_email': email, 'event_type': '1', 'event_question': '', 'intent': dept};
+        var data = { 'user_email': email, 'event_type': '1', 'event_question': '', 'intent': dept };
         console.log(data);
         fetch("http://" + server_api + "/login/", {
           method: "POST",
