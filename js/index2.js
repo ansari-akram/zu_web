@@ -117,7 +117,8 @@ function sendInputToWatson(input) {
     res.text().then(function (text) {
       if (res.status == 200) {
         removeLoader();
-        console.log(JSON.parse(text).answer);
+        console.log(JSON.parse(text));
+        console.log(dept);
         response_list.push(JSON.parse(text).answer);
         intents_list.push(JSON.parse(text).intent);
         for (var i = 0; i < response_list.length; i++) {
