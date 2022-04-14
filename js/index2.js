@@ -122,7 +122,15 @@ function sendInputToWatson(input) {
         response_list.push(JSON.parse(text).answer);
         intents_list.push(JSON.parse(text).intent);
 
-        if (JSON.parse(text).intent == dept) {
+        if (JSON.parse(text).answer.toLowerCase() == sorry) {
+          addResponseMsg(JSON.parse(text).answer);
+          addResponseMsg("Do you want to talk with our Human Agent? please <strong>Click</strong> on either Yes or No");
+          addResponseMsg("<p onclick='transferLiveChat()'>Yes</p> / <p onclick='ask_another()'>No</p>");
+          //addResponseMsg("<a href='https://live-test-772cf.web.app/' target='_blank'>Yes</a> / <a href='#' onclick='ask_another()'>No</a>");
+          //addResponseMsg("<a href='#' onclick='ask_another()'>No</a>");
+        }
+
+        else if (JSON.parse(text).intent == dept) {
           for (var i = 0; i < response_list.length; i++) {
             if (response_list[i] != JSON.parse(text).answer) {
               response_list = [];
@@ -136,19 +144,7 @@ function sendInputToWatson(input) {
               setTimeout(addResponseMsg, 500, "Are you satisfied with the Chatbot's Response? Answer with 'Yes' or 'No'.");
               break;
             }
-          }
-  
-          if (JSON.parse(text).answer.toLowerCase().includes('sorry')) {
-            addResponseMsg(JSON.parse(text).answer);
-            addResponseMsg("Do you want to talk with our Human Agent? please <strong>Click</strong> on either Yes or No");
-            addResponseMsg("<p onclick='transferLiveChat()'>Yes</p> / <p onclick='ask_another()'>No</p>");
-            //addResponseMsg("<a href='https://live-test-772cf.web.app/' target='_blank'>Yes</a> / <a href='#' onclick='ask_another()'>No</a>");
-            //addResponseMsg("<a href='#' onclick='ask_another()'>No</a>");
-          }
-  
-          else {
-            addResponseMsg(JSON.parse(text).answer);
-          }
+          }          
         }
 
         else {
