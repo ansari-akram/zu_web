@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zayed University</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style2.css">
+
+</head>
+
+<body>
+<img src="images/bg.PNG"/>
+<!--<div id="message">-->
+
+
+<div id="chatbot" class="main-card collapsed">
+    <button id="chatbot_toggle">
+        <ion-icon name="chatbubbles-outline" size="small" id="open"></ion-icon>
+        <ion-icon name="close-outline" size="small" class="close" id="close"></ion-icon>
+    </button>
+    <div class="main-title">
+        <div>
+            <img src="images/logo.png"/>
+        </div>
+        <span>AI Chatbot</span>
+        <ion-icon name="refresh-sharp" class="refreshbtn" id="refreshbtn" onclick="clear_chatbot()"></ion-icon>
+
+    </div>
+    <div class="cred-form active" id="cred-form">
+    <form onsubmit="return false">
+        <div class="user-form">
+            <input type="text" placeholder="Name" id="user-name" required autocomplete="on"/>
+            <input type="email" placeholder="Email Address" id="user-email" required autocomplete="on"/>
+            <select class="department" name="department" id="department" required>
+                <option value="">Select Department</option>
+                <option value="Academic Advising">Academic Advising</option>
+                <option value="Career Counselling">Career Counselling</option>
+                <option value="UG Programs">UG Programs</option>
+                <option value="Call Center">Call Center</option>
+                <option value="Registrar Office Guidelines">Registrar Office Guidelines</option>
+                <option value="Graduate Programs">Graduate Programs</option>
+                <option value="Library">Library</option>
+                <option value="GCD">GCD</option>
+            </select>
+            <input type="submit" value="Start" id="user-submit" onclick="checkForm()">
+        </div>
+    </form>
+    </div>
+    <div class="chat-area" id="message-box">
+    </div>
+    <div class="line"></div>
+    <div class="input-div">
+        <button onclick="startSr()" class="input-mic" size="large">
+            <ion-icon name="mic"></ion-icon>
+        </button>
+        <input class="input-message" name="message" type="text" id="message" placeholder="Type your message..."/>
+        <button class="input-send" onclick="send()">
+            <ion-icon name="send"></ion-icon>
+        </button>
+    </div>
+</div>
+<script src="js/index2.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
