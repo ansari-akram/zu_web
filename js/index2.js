@@ -152,7 +152,7 @@ function sendInputToWatson(input) {
         }
 
         else {
-          addResponseMsg("Please ask questions according yo the Department You selected.");
+          addResponseMsg("Please ask questions according to the Department You selected.");
         }
       }
 
