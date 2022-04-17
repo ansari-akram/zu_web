@@ -46,7 +46,6 @@ function addMsg(msg) {
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
 
-  //SEND MESSAGE TO API
   document.getElementById("message").value = "";
   document.getElementById("message-box").scrollTop = document.getElementById("message-box").scrollHeight;
 
@@ -59,7 +58,7 @@ function addMsg(msg) {
   //LOADER END
 
   prev_msg = document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3].textContent;
-  console.log(prev_msg);
+  // console.log(prev_msg);
   //console.log(document.getElementById('message-box').children[document.getElementById('message-box').children.length - 3]);
 
   if (msg.toLowerCase().includes("connect to live agent")) {
@@ -108,10 +107,12 @@ function addMsg(msg) {
 }
 
 function sendInputToWatson(input) {
-  var data = data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '' },
+  var data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '', 'intent': dept },
     unknown = "I didn't quite get that.",
     sorry = "Sorry, I am not able to detect the language you are asking.",
     api = "http://127.0.0.1:8000/watson-assistant/";
+
+  // console.log(data);
 
   fetch(api, {
     method: "POST",
@@ -122,7 +123,7 @@ function sendInputToWatson(input) {
       if (res.status == 200) {
         removeLoader();
         console.log(JSON.parse(text));
-        console.log(dept);
+        // console.log(dept);
         response_list.push(JSON.parse(text).answer);
         intents_list.push(JSON.parse(text).intent);
 
@@ -177,7 +178,7 @@ function sendInputToWatson(input) {
 
 function transferLiveChat() {
   //logout
-  var data = { 'user_email': email, 'event_type': '2', 'event_question': '' };
+  var data = { 'user_email': email, 'event_type': '2', 'event_question': '', 'intent': dept };
   fetch("http://" + server_api + "/login/", {
     method: "POST",
     body: JSON.stringify(data),
@@ -187,7 +188,8 @@ function transferLiveChat() {
     })
   });
 
-  var data = { 'user_email': email, 'event_type': '6', 'event_question': '' };
+  // live chat count
+  var data = { 'user_email': email, 'event_type': '6', 'event_question': '', 'intent': dept };
   fetch("http://" + server_api + "/login/", {
     method: "POST",
     body: JSON.stringify(data),
@@ -347,7 +349,7 @@ function clear_chatbot() {
   }
 
   if (db_commit) {
-    var data = { 'user_email': email, 'event_type': '7', 'event_question': '' };
+    var data = { 'user_email': email, 'event_type': '7', 'event_question': '', 'intent': dept};
     fetch("http://" + server_api + "/login/", {
       method: "POST",
       body: JSON.stringify(data),
@@ -357,6 +359,8 @@ function clear_chatbot() {
       })
     });
   }
+
+  addResponseMsgWithDropdown();
 }
 
 function validateEmail2(mail) {
@@ -364,6 +368,41 @@ function validateEmail2(mail) {
     return (true)
   }
   return (false)
+}
+
+function setDeptDropdown() {
+  dept = document.getElementById("department-dropdown").value;
+
+  var msgs = document.getElementById("message-box");
+
+  while (msgs.lastChild) {
+    if (msgs.lastChild.textContent.includes("This is Zayed University AI Chatbot.")) break;
+    else {
+      msgs.removeChild(msgs.lastChild);
+    }
+  }
+  document.getElementById("message").focus();
+}
+
+function addResponseMsgWithDropdown() {
+  addResponseMsg(
+    `Do you want to change the Department?<br /><br />
+    <select class="department-dropdown" id="department-dropdown" name="department" id="department" required>
+    <option value="">Select Department</option>
+    <option value="ACADEMIC_ADVISING">Academic Advising</option>
+    <option value="CAREER_COUNSELING">Career Counselling</option>
+    <option value="UG_Programs">UG Programs</option>
+    <option value="CALL_CENTER">Call Center</option>
+    <option value="Registrar_Office_Guidlines">Registrar Office Guidelines</option>
+    <option value="Graduate_Program">Graduate Programs</option>
+    <option value="Library">Library</option>
+    <option value="GCD">GCD</option>
+    </select>
+    <input type="button" class="dropdown-button" value="Submit" onclick="setDeptDropdown()"/><br />
+    <strong>NOTE:</strong> If you do not want to change the Department, continue with your questions.`
+  );
+
+  
 }
 
 function checkForm() {
@@ -375,7 +414,7 @@ function checkForm() {
     if (user_name != '' && dept != "") {
       if (document.getElementById("cred-form").classList.contains("active")) {
         var data = { 'user_email': email, 'event_type': '1', 'event_question': '', 'intent': dept };
-        console.log(data);
+        // console.log(data);
         fetch("http://" + server_api + "/login/", {
           method: "POST",
           body: JSON.stringify(data),
@@ -392,7 +431,9 @@ function checkForm() {
         document.getElementById("chatbot").children[4].style.display = ""
         document.getElementById("chatbot").children[5].style.display = ""
 
-        if (checkWelcomeMsg()) setTimeout(addResponseMsg, 500, "Hi " + user_name + ", This is Zayed University AI Chatbot.")
+        if (checkWelcomeMsg()) {
+          setTimeout(addResponseMsg, 500, "Hi " + user_name + ", This is Zayed University AI Chatbot.")
+        }
         document.getElementById("message").focus();
       }
     }
