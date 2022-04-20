@@ -166,7 +166,7 @@ function sendInputToWatson(input) {
           }
 
           else if (JSON.parse(text).intent == "Greetings") {
-            addResponseMsg(SON.parse(text).answer);
+            addResponseMsg(JSON.parse(text).answer);
           }
 
           else {
