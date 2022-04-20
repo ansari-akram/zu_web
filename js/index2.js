@@ -124,8 +124,10 @@ function sendInputToWatson(input) {
         removeLoader();
         console.log(JSON.parse(text));
         // console.log(dept);
-        response_list.push(JSON.parse(text).answer);
-        intents_list.push(JSON.parse(text).intent);
+        if (JSON.parse(text).intent != "Greetings") {
+          response_list.push(JSON.parse(text).answer);
+          intents_list.push(JSON.parse(text).intent);
+        }
 
         // console.log(JSON.parse(text).answer.toLowerCase());
         // console.log(sorry);
@@ -142,7 +144,7 @@ function sendInputToWatson(input) {
         else {
           // console.log(JSON.parse(text).intent == dept);
           // if (JSON.parse(text).intent == "Greetings")
-          if (JSON.parse(text).intent == dept || JSON.parse(text).intent == "Greetings") {
+          if (JSON.parse(text).intent == dept) {
             for (var i = 0; i < response_list.length; i++) {
               if (response_list[i] != JSON.parse(text).answer) {
                 response_list = [];
@@ -161,6 +163,10 @@ function sendInputToWatson(input) {
                 addResponseMsg(JSON.parse(text).answer);
               }
             }
+          }
+
+          else if (JSON.parse(text).intent == "Greetings") {
+            addResponseMsg(SON.parse(text).answer);
           }
 
           else {
@@ -350,7 +356,7 @@ function clear_chatbot() {
   }
 
   if (db_commit) {
-    var data = { 'user_email': email, 'event_type': '7', 'event_question': '', 'intent': dept};
+    var data = { 'user_email': email, 'event_type': '7', 'event_question': '', 'intent': dept };
     fetch("http://" + server_api + "/login/", {
       method: "POST",
       body: JSON.stringify(data),
@@ -403,7 +409,7 @@ function addResponseMsgWithDropdown() {
     <strong>NOTE:</strong> If you do not want to change the Department, continue with your questions.`
   );
 
-  
+
 }
 
 function checkForm() {
