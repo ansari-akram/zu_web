@@ -217,7 +217,7 @@ div img {
   box-shadow: -3px 3px var(--color-code);
 }
 
-.chat-message-received .more {
+.more {
   height: 1em;
   overflow: hidden;
   white-space: pre;
@@ -228,7 +228,7 @@ div img {
   transition: width 1s ease;
 }
 
-.chat-message-received .more:hover {
+.more:hover {
   height: auto;
   overflow: auto;
   text-overflow: clip;
