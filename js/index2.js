@@ -299,7 +299,7 @@ function addResponseMsg(msg) {
 function addResponseMsgWithUrl(msg, url) {
   console.log(msg.substring(0, 200), url);
   var div = document.createElement("div");
-  div.innerHTML = "<div class='chat-message-received'>" + msg.substring(0, 200) + "<a href='"+ url +"' targer='_blank' >...</a></div>";
+  div.innerHTML = "<div class='chat-message-received' id='minimize'>" + msg.substring(0, 200) + "...<br/><a href='"+ url +"' targer='_blank'>"+ url +"</a></div>";
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
   document.getElementById("message-box").scrollTop = document.getElementById(
@@ -473,3 +473,31 @@ function checkWelcomeMsg() {
 document.getElementById("chatbot_toggle").children[1].style.display = "none"
 document.getElementById("chatbot").children[1].style.display = "none"
 document.getElementById("chatbot").children[4].style.display = "none"
+
+jQuery(function(){
+
+  var minimized_elements = $('div#minimize');
+  
+  minimized_elements.each(function(){    
+      var t = $(this).text();        
+      if(t.length < 200) return;
+      
+      $(this).html(
+          t.slice(0, 200)+'<span>...</span> <a href="#" class="more">More</a>'+
+          '<span style="display:none;">'+ t.slice(200,t.length)+' <a href="#" class="less">Less</a></span>'
+      );
+      
+  }); 
+  
+  $('a.more', minimized_elements).click(function(event){
+      event.preventDefault();
+      $(this).hide().prev().hide();
+      $(this).next().show();        
+  });
+  
+  $('a.less', minimized_elements).click(function(event){
+      event.preventDefault();
+      $(this).parent().hide().prev().show().prev().show();    
+  });
+
+});
