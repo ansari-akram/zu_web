@@ -297,7 +297,7 @@ function addResponseMsg(msg) {
 }
 
 function addResponseMsgWithUrl(msg, url) {
-  console.log(msg, url);
+  console.log(msg.substring(0, 100), url);
   var div = document.createElement("div");
   div.innerHTML = "<div class='chat-message-received'>" + msg.substring(0,100) + "</div>";
   div.className = "chat-message-div";
