@@ -144,7 +144,7 @@ function sendInputToWatson(input) {
         else {
           // console.log(JSON.parse(text).intent == dept);
           // if (JSON.parse(text).intent == "Greetings")
-          if (JSON.parse(text).intent == dept) {
+          if (JSON.parse(text).intent.toLowerCase() == dept) {
             for (var i = 0; i < response_list.length; i++) {
               if (response_list[i] != JSON.parse(text).answer) {
                 response_list = [];
