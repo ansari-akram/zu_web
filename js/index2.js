@@ -478,6 +478,7 @@ document.getElementById("chatbot").children[4].style.display = "none"
 // JQUERY
 
 var minimized_elements = $('div#minimize');
+console.log(minimized_elements);
 
 minimized_elements.each(function () {
   var t = $(this).text();
