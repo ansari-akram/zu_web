@@ -299,7 +299,7 @@ function addResponseMsg(msg) {
 function addResponseMsgWithUrl(msg, url) {
   console.log(msg.substring(0, 200), url);
   var div = document.createElement("div");
-  div.innerHTML = "<div class='chat-message-received' id='minimize'>" + msg.substring(0, 200) + "...<br/><a href='"+ url +"' targer='_blank'>"+ url +"</a></div>";
+  div.innerHTML = "<div class='chat-message-received' id='minimize'>" + msg.substring(0, 200) + "<br/><a href='"+ url +"' targer='_blank'>"+ url +"</a></div>";
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
   document.getElementById("message-box").scrollTop = document.getElementById(
