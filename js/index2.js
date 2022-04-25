@@ -159,6 +159,11 @@ function sendInputToWatson(input) {
                 break;
               }
 
+              else if (JSON.parse(text).intent.toLowerCase() == "general") {
+                addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url);
+                break;
+              }
+
               else {
                 addResponseMsg(JSON.parse(text).answer);
                 break;
@@ -168,10 +173,6 @@ function sendInputToWatson(input) {
 
           else if (JSON.parse(text).intent == "Greetings") {
             addResponseMsg(JSON.parse(text).answer);
-          }
-
-          else if (JSON.parse(text).intent.toLowerCase() == "general") {
-            addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url);
           }
 
           else {
