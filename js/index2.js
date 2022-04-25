@@ -298,6 +298,14 @@ function addResponseMsg(msg) {
 
 function addResponseMsgWithUrl(msg, url) {
   console.log(msg, url);
+  var div = document.createElement("div");
+  div.innerHTML = "<div class='chat-message-received'>" + msg.substring(0,100) + "</div>";
+  div.className = "chat-message-div";
+  document.getElementById("message-box").appendChild(div);
+  document.getElementById("message-box").scrollTop = document.getElementById(
+    "message-box"
+  ).scrollHeight;
+  running = false;
 }
 
 document.getElementById("message").addEventListener("keyup", function (event) {
