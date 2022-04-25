@@ -297,9 +297,8 @@ function addResponseMsg(msg) {
 }
 
 function addResponseMsgWithUrl(msg, url) {
-  console.log(msg.substring(0, 200), url);
   var div = document.createElement("div");
-  div.innerHTML = "<div class='chat-message-received' id='minimize'>" + msg + "<br/><br/><a href='" + url + "' targer='_blank'>" + url + "</a></div>";
+  div.innerHTML = "<div class='chat-message-received more' id='minimize'>" + msg + "<br/><br/><a href='" + url + "' target='_blank'>" + url + "</a></div>";
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
   document.getElementById("message-box").scrollTop = document.getElementById(
@@ -476,7 +475,6 @@ document.getElementById("chatbot").children[4].style.display = "none"
 
 
 // JQUERY
-
 var minimized_elements = $('div#minimize');
 console.log(minimized_elements);
 
