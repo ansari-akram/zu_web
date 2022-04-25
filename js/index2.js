@@ -404,6 +404,7 @@ function addResponseMsgWithDropdown() {
     <option value="Graduate_Program">Graduate Programs</option>
     <option value="Library">Library</option>
     <option value="GCD">GCD</option>
+    <option value="general">General</option>
     </select>
     <input type="button" class="dropdown-button" value="Submit" onclick="setDeptDropdown()"/><br />
     <strong>NOTE:</strong> If you do not want to change the Department, continue with your questions.`
