@@ -220,7 +220,7 @@ div img {
 .more {
   margin: 8px 64px 8px 16px;
   padding: 8px 16px;
-  height: 5em;
+  height: 100px;
   overflow: hidden;
   color: #AD5B5D;
   text-overflow: ellipsis;
