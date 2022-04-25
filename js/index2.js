@@ -159,6 +159,10 @@ function sendInputToWatson(input) {
                 break;
               }
 
+              else if (JSON.parse(text).intent.toLowerCase() == "general") {
+                addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url);
+              }
+
               else {
                 addResponseMsg(JSON.parse(text).answer);
               }
@@ -290,6 +294,10 @@ function addResponseMsg(msg) {
     "message-box"
   ).scrollHeight;
   running = false;
+}
+
+function addResponseMsgWithUrl(msg, url) {
+  console.log(msg, url);
 }
 
 document.getElementById("message").addEventListener("keyup", function (event) {
