@@ -154,7 +154,7 @@ function sendInputToWatson(input) {
                 break
               }
 
-              else if (response_list[i] == JSON.parse(text).answer && response_list.length == 3) {
+              else if (response_list[i] == JSON.parse(text).answer && response_list.length >= 3) {
                 setTimeout(addResponseMsg, 500, "Are you satisfied with the Chatbot's Response? Answer with 'Yes' or 'No'.");
                 break;
               }
