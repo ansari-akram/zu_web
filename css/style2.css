@@ -218,10 +218,15 @@ div img {
 }
 
 .more {
+  margin: 8px 64px 8px 16px;
+  padding: 8px 16px;
   height: 1em;
   overflow: hidden;
+  color: #AD5B5D;
   white-space: pre;
   text-overflow: ellipsis;
+  border-radius: 8px 8px 8px 0px;
+  background-color: white;
   background-color: lightgreen;
   border-radius: 8px;
   border: 2px solid #6c6;
@@ -229,7 +234,12 @@ div img {
 }
 
 .more:hover {
+  margin: 8px 64px 8px 16px;
+  padding: 8px 16px;
   height: auto;
+  border-radius: 8px 8px 8px 0px;
+  background-color: white;
+  color: #AD5B5D;
   overflow: auto;
   text-overflow: clip;
 }
