@@ -476,7 +476,10 @@ document.getElementById("chatbot").children[4].style.display = "none"
 
 
 // JQUERY
-$('div#minimize').each(function () {
+
+var minimized_elements = $('div#minimize');
+
+minimized_elements.each(function () {
   var t = $(this).text();
   if (t.length < 200) return;
 
@@ -497,3 +500,4 @@ $('a.less', minimized_elements).click(function (event) {
   event.preventDefault();
   $(this).parent().hide().prev().show().prev().show();
 });
+
