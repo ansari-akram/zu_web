@@ -300,7 +300,7 @@ function addResponseMsg(msg) {
 
 function addResponseMsgWithUrl(msg, url) {
   var div = document.createElement("div");
-  div.innerHTML = "<div class='chat-message-received more' id='minimize'>" + msg + "<br />Please click on the link below to get more details.<br/><br/><a href='" + url + "' target='_blank'>" + url + "</a></div>";
+  div.innerHTML = "<div class='chat-message-received more' id='minimize'>" + msg + "<br /><br />Please click on the link below to get more details.<br/><br/><a href='" + url + "' target='_blank'>" + url + "</a></div>";
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
   document.getElementById("message-box").scrollTop = document.getElementById(
@@ -474,31 +474,3 @@ function checkWelcomeMsg() {
 document.getElementById("chatbot_toggle").children[1].style.display = "none"
 document.getElementById("chatbot").children[1].style.display = "none"
 document.getElementById("chatbot").children[4].style.display = "none"
-
-
-// JQUERY
-var minimized_elements = $('div#minimize');
-console.log(minimized_elements);
-
-minimized_elements.each(function () {
-  var t = $(this).text();
-  if (t.length < 200) return;
-
-  $(this).html(
-    t.slice(0, 200) + '<span>...</span> <a href="#" class="more">More</a>' +
-    '<span style="display:none;">' + t.slice(200, t.length) + ' <a href="#" class="less">Less</a></span>'
-  );
-
-});
-
-$('a.more', minimized_elements).click(function (event) {
-  event.preventDefault();
-  $(this).hide().prev().hide();
-  $(this).next().show();
-});
-
-$('a.less', minimized_elements).click(function (event) {
-  event.preventDefault();
-  $(this).parent().hide().prev().show().prev().show();
-});
-
