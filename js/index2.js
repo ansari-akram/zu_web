@@ -89,7 +89,7 @@ function addMsg(msg) {
       var ques = length_[length_.length - 4].textContent;
       var ans = response_list[0];
       var intent = intents_list[0];
-      console.log(ques, ans);
+      // console.log(ques, ans);
       var data = { 'user_email': email, 'event_type': '', 'event_question': ques, 'event_answer': ans, 'intent': intent };
       fetch("http://" + server_api + "/wrong_answer/", {
         method: "POST",
@@ -144,6 +144,7 @@ function sendInputToWatson(input) {
         else {
           // console.log(JSON.parse(text).intent == dept);
           // if (JSON.parse(text).intent == "Greetings")
+          console.log(JSON.parse(text).intent.toLowerCase(), dept.toLowerCase())
           if (JSON.parse(text).intent.toLowerCase() == dept.toLowerCase()) {
             for (var i = 0; i < response_list.length; i++) {
               if (response_list[i] != JSON.parse(text).answer) {
