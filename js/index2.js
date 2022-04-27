@@ -434,6 +434,7 @@ function checkForm() {
   user_name = document.getElementById("user-name").value;
   email = document.getElementById("user-email").value;
   dept = document.getElementById("department").value;
+  console.log(dept);
 
   if (validateEmail2(email)) {
     if (user_name != '' && dept != "") {
