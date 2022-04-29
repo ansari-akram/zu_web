@@ -122,7 +122,7 @@ function sendInputToWatson(input) {
     res.text().then(function (text) {
       if (res.status == 200) {
         removeLoader();
-        console.log(JSON.parse(text));
+        // console.log(JSON.parse(text));
         // console.log(dept);
         if (JSON.parse(text).intent != "Greetings") {
           response_list.push(JSON.parse(text).answer);
@@ -144,8 +144,8 @@ function sendInputToWatson(input) {
         else {
           // console.log(JSON.parse(text).intent == dept);
           // if (JSON.parse(text).intent == "Greetings")
-          console.log(JSON.parse(text).intent.toLowerCase(), dept.toLowerCase());
-          console.log(JSON.parse(text).intent.toLowerCase() == dept.toLowerCase());
+          // console.log(JSON.parse(text).intent.toLowerCase(), dept.toLowerCase());
+          // console.log(JSON.parse(text).intent.toLowerCase() == dept.toLowerCase());
           if (JSON.parse(text).intent.toLowerCase() == dept.toLowerCase()) {
             for (var i = 0; i < response_list.length; i++) {
               if (response_list[i] != JSON.parse(text).answer) {
@@ -408,7 +408,7 @@ function setDeptDropdown() {
     }
   }
   document.getElementById("message").focus();
-  console.log(dept);
+  // console.log(dept);
   response_list = [];
   intents_list = [];
 }
@@ -439,13 +439,11 @@ function checkForm() {
   user_name = document.getElementById("user-name").value;
   email = document.getElementById("user-email").value;
   dept = document.getElementById("department").value;
-  console.log(dept);
 
   if (validateEmail2(email)) {
     if (user_name != '' && dept != "") {
       if (document.getElementById("cred-form").classList.contains("active")) {
         var data = { 'user_email': email, 'event_type': '1', 'event_question': '', 'intent': dept };
-        // console.log(data);
         fetch("http://" + server_api + "/login/", {
           method: "POST",
           body: JSON.stringify(data),
