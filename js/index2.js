@@ -302,7 +302,7 @@ function addResponseMsg(msg) {
 
 function addResponseMsgWithUrl(msg, url) {
   var div = document.createElement("div");
-  div.innerHTML = "<div class='chat-message-received more' id='minimize'>" + msg + "<br /><br />Please click on the link below to get more details.<br/><br/><a href='" + url + "' target='_blank'>" + url + "</a></div>";
+  div.innerHTML = "<div class='chat-message-received more' id='minimize'>" + msg + "<br /><br />Please click on the link below to get more details.<br/><br/><a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + url + "</a></div>";
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
   document.getElementById("message-box").scrollTop = document.getElementById(
