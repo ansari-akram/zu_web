@@ -123,11 +123,24 @@ function sendInputToWatson(input) {
       if (res.status == 200) {
         removeLoader();
         console.log(JSON.parse(text));
-        // console.log(dept);
-        if (JSON.parse(text).intent != "Greetings") {
-          response_list.push(JSON.parse(text).answer);
-          intents_list.push(JSON.parse(text).intent);
+
+        response_list.push(JSON.parse(text).answer);
+        intents_list.push(JSON.parse(text).intent);
+
+        for (var i = 0; i < response_list.length; i++) {
+          if (response_list[i] != JSON.parse(text).answer) {
+            response_list = [];
+            intents_list = [];
+            response_list.push(JSON.parse(text).answer);
+            intents_list.push(JSON.parse(text).intent);
+          }
         }
+
+        // console.log(dept);
+        // if (JSON.parse(text).intent != "Greetings") {
+        //   response_list.push(JSON.parse(text).answer);
+        //   intents_list.push(JSON.parse(text).intent);
+        // }
 
         // console.log(JSON.parse(text).answer.toLowerCase());
         // console.log(sorry);
@@ -147,38 +160,53 @@ function sendInputToWatson(input) {
           // if (JSON.parse(text).intent == "Greetings")
           // console.log(JSON.parse(text).intent.toLowerCase(), dept.toLowerCase());
           // console.log(JSON.parse(text).intent.toLowerCase() == dept.toLowerCase());
+
+          // NEW CODE
           if (JSON.parse(text).intent.toLowerCase() == dept.toLowerCase()) {
-            for (var i = 0; i < response_list.length; i++) {
-              if (response_list[i] != JSON.parse(text).answer) {
-                response_list = [];
-                intents_list = [];
-                response_list.push(JSON.parse(text).answer);
-                intents_list.push(JSON.parse(text).intent);
-                break
-              }
-
-              else if (response_list[i] == JSON.parse(text).answer && response_list.length >= 3) {
-
-                if (JSON.parse(text).intent.toLowerCase() == "general") {
-                  addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url);
-                } else {
-                  addResponseMsg(JSON.parse(text).answer);
-                }
-
-                setTimeout(addResponseMsg, 500, "Are you satisfied with the Chatbot's Response? Answer with 'Yes' or 'No'.");
-                break;
-              }
-
-              else if (JSON.parse(text).intent.toLowerCase() == "general") {
-                addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url);
-                break;
-              }
-
-              else {
-                addResponseMsg(JSON.parse(text).answer);
-                break;
-              }
+            if (response_list[0] == JSON.parse(text).answer && response_list.length >= 3) {
+              if (JSON.parse(text).intent.toLowerCase() == "general") addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url);
+              else addResponseMsg(JSON.parse(text).answer);
+              setTimeout(addResponseMsg, 500, "Are you satisfied with the Chatbot's Response? Answer with 'Yes' or 'No'.");
             }
+
+            else if (JSON.parse(text).intent.toLowerCase() == "general") addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url);
+
+            else addResponseMsg(JSON.parse(text).answer);
+
+            // NEW CODE END
+
+            
+            // for (var i = 0; i < response_list.length; i++) {
+            //   if (response_list[i] != JSON.parse(text).answer) {
+            //     response_list = [];
+            //     intents_list = [];
+            //     response_list.push(JSON.parse(text).answer);
+            //     intents_list.push(JSON.parse(text).intent);
+            //     break
+            //   }
+
+            //   else if (response_list[i] == JSON.parse(text).answer && response_list.length >= 3) {
+
+            //     if (JSON.parse(text).intent.toLowerCase() == "general") {
+            //       addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url);
+            //     } else {
+            //       addResponseMsg(JSON.parse(text).answer);
+            //     }
+
+            //     setTimeout(addResponseMsg, 500, "Are you satisfied with the Chatbot's Response? Answer with 'Yes' or 'No'.");
+            //     break;
+            //   }
+
+            //   else if (JSON.parse(text).intent.toLowerCase() == "general") {
+            //     addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url);
+            //     break;
+            //   }
+
+            //   else {
+            //     addResponseMsg(JSON.parse(text).answer);
+            //     break;
+            //   }
+            // }
           }
 
           else if (JSON.parse(text).intent == "Greetings") {
