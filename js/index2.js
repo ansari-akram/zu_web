@@ -122,7 +122,7 @@ function sendInputToWatson(input) {
     res.text().then(function (text) {
       if (res.status == 200) {
         removeLoader();
-        // console.log(JSON.parse(text));
+        console.log(JSON.parse(text));
         // console.log(dept);
         if (JSON.parse(text).intent != "Greetings") {
           response_list.push(JSON.parse(text).answer);
@@ -132,6 +132,7 @@ function sendInputToWatson(input) {
         // console.log(JSON.parse(text).answer.toLowerCase());
         // console.log(sorry);
         // console.log(JSON.parse(text).answer.toLowerCase() == sorry);
+        console.log(response_list);
 
         if (JSON.parse(text).answer.toLowerCase() == sorry.toLowerCase()) {
           addResponseMsg("Sorry, We could not recognize the question you've asked for. Kindly let us know if we help with anything else.");
