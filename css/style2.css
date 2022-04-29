@@ -232,6 +232,11 @@ div img {
   transition: width 1s ease;
 }
 
+.more a {
+  text-decoration: underline;
+  color: blue;
+}
+
 .more:hover {
   margin: 8px 64px 8px 16px;
   padding: 8px 16px;
