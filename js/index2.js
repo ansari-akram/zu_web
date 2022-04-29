@@ -158,7 +158,13 @@ function sendInputToWatson(input) {
               }
 
               else if (response_list[i] == JSON.parse(text).answer && response_list.length >= 3) {
-                addResponseMsg(JSON.parse(text).answer);
+
+                if (JSON.parse(text).intent.toLowerCase() == "general") {
+                  addResponseMsgWithUrl(JSON.parse(text).answer, JSON.parse(text).url);
+                } else {
+                  addResponseMsg(JSON.parse(text).answer);
+                }
+
                 setTimeout(addResponseMsg, 500, "Are you satisfied with the Chatbot's Response? Answer with 'Yes' or 'No'.");
                 break;
               }
