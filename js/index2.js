@@ -144,7 +144,8 @@ function sendInputToWatson(input) {
         else {
           // console.log(JSON.parse(text).intent == dept);
           // if (JSON.parse(text).intent == "Greetings")
-          console.log(JSON.parse(text).intent.toLowerCase(), dept.toLowerCase())
+          console.log(JSON.parse(text).intent.toLowerCase(), dept.toLowerCase());
+          console.log(JSON.parse(text).intent.toLowerCase() == dept.toLowerCase());
           if (JSON.parse(text).intent.toLowerCase() == dept.toLowerCase()) {
             for (var i = 0; i < response_list.length; i++) {
               if (response_list[i] != JSON.parse(text).answer) {
@@ -407,6 +408,9 @@ function setDeptDropdown() {
     }
   }
   document.getElementById("message").focus();
+  console.log(dept);
+  response_list = [];
+  intents_list = [];
 }
 
 function addResponseMsgWithDropdown() {
