@@ -342,6 +342,7 @@ function addResponseMsgWithUrl(msg, url) {
 
   var myHeaders = new Headers();
   myHeaders.append("Access-Control-Allow-Origin", "www.zu.ac.ae");
+  myHeaders.append("Access-Control-Allow-Credentials", "true");
 
   var requestOptionsUrl = {
     method: 'GET',
