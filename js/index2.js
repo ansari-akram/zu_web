@@ -345,7 +345,7 @@ function addResponseMsgWithUrl(msg, url) {
     redirect: 'follow'
   };
   
-  fetch("www.zu.ac.ae/main/en/grad-speech", requestOptionsUrl)
+  fetch("https://www.zu.ac.ae/main/en/grad-speech", requestOptionsUrl)
     .then(response => {
       console.log('response', response);
     })
