@@ -347,10 +347,11 @@ function addResponseMsgWithUrl(msg, url) {
   var requestOptionsUrl = {
     method: 'GET',
     headers: myHeaders,
-    redirect: 'follow'
+    redirect: 'follow',
+    mode: 'no-cors',
   };
 
-  fetch("https://justcors.com/tl_2a079eb/https://www.zu.ac.ae/main/en/grad-speech", requestOptionsUrl)
+  fetch("https://www.zu.ac.ae/main/en/grad-speech", requestOptionsUrl)
     .then(response => {
       console.log('response', response);
     })
