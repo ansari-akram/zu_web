@@ -337,6 +337,21 @@ function addResponseMsg(msg) {
 }
 
 function addResponseMsgWithUrl(msg, url) {
+
+  var requestOptionsUrl = {
+    method: 'GET',
+    redirect: 'follow'
+  };
+  
+  fetch("www.zu.ac.ae/main/en/grad-speech", requestOptionsUrl)
+    .then(response => {
+      console.log('response', response);
+    })
+    .then(result => {
+      console.log('result', result);
+    })
+    .catch(error => console.log('error', error));
+
   var div = document.createElement("div");
   div.innerHTML = "<div class='chat-message-received more' id='minimize'>" + msg + "<br /><br />Please click on the link below to get more details.<br/><br/><a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + url + "</a></div>";
   div.className = "chat-message-div";
