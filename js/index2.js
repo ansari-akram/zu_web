@@ -338,6 +338,8 @@ function addResponseMsg(msg) {
 
 function addResponseMsgWithUrl(msg, url) {
 
+  console.log(url);
+
   var requestOptionsUrl = {
     method: 'GET',
     redirect: 'follow'
