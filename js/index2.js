@@ -341,8 +341,8 @@ function addResponseMsgWithUrl(msg, url) {
   console.log('url', url);
 
   var myHeaders = new Headers();
-  myHeaders.append("Access-Control-Allow-Origin", "www.zu.ac.ae");
-  myHeaders.append("Access-Control-Allow-Credentials", "true");
+  // myHeaders.append("Access-Control-Allow-Origin", "www.zu.ac.ae");
+  // myHeaders.append("Access-Control-Allow-Credentials", "true");
 
   var requestOptionsUrl = {
     method: 'GET',
@@ -350,7 +350,7 @@ function addResponseMsgWithUrl(msg, url) {
     redirect: 'follow'
   };
 
-  fetch("https://www.zu.ac.ae/main/en/grad-speech", requestOptionsUrl)
+  fetch("https://justcors.com/tl_2a079eb/https://www.zu.ac.ae/main/en/grad-speech", requestOptionsUrl)
     .then(response => {
       console.log('response', response);
     })
