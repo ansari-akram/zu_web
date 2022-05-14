@@ -175,7 +175,7 @@ function sendInputToWatson(input) {
 
             // NEW CODE END
 
-            
+
             // for (var i = 0; i < response_list.length; i++) {
             //   if (response_list[i] != JSON.parse(text).answer) {
             //     response_list = [];
@@ -338,13 +338,17 @@ function addResponseMsg(msg) {
 
 function addResponseMsgWithUrl(msg, url) {
 
-  console.log(url);
+  console.log('url', url);
+
+  var myHeaders = new Headers();
+  myHeaders.append("Access-Control-Allow-Origin", "www.zu.ac.ae");
 
   var requestOptionsUrl = {
     method: 'GET',
+    headers: myHeaders,
     redirect: 'follow'
   };
-  
+
   fetch("https://www.zu.ac.ae/main/en/grad-speech", requestOptionsUrl)
     .then(response => {
       console.log('response', response);
