@@ -338,30 +338,16 @@ function addResponseMsg(msg) {
 
 function addResponseMsgWithUrl(msg, url) {
 
-  console.log('url', url);
-
-  var myHeaders = new Headers();
-  // myHeaders.append("Access-Control-Allow-Origin", "www.zu.ac.ae");
-  // myHeaders.append("Access-Control-Allow-Credentials", "true");
-
-  var requestOptionsUrl = {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow',
-    mode: 'no-cors',
-  };
-
-  fetch("https://www.zu.ac.ae/main/en/grad-speech", requestOptionsUrl)
-    .then(response => {
-      console.log('response', response);
-    })
-    .then(result => {
-      console.log('result', result);
-    })
-    .catch(error => console.log('error', error));
+  console.log('url', url, msg);
 
   var div = document.createElement("div");
-  div.innerHTML = "<div class='chat-message-received more' id='minimize'>" + msg + "<br /><br />Please click on the link below to get more details.<br/><br/><a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + url + "</a></div>";
+  if (msg.includes('403')){
+	div.innerHTML = "<div class='chat-message-received more' id='minimize'> " + msg + "<br><a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + url + "</a><br /><br />Please click on the above link to get more details.</div>";
+  }
+  else {
+	  div.innerHTML = "<div class='chat-message-received more' id='minimize'><a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + url + "</a><br /><br />Please click on the above link to get more details.</div>";
+  }
+  
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
   document.getElementById("message-box").scrollTop = document.getElementById(
@@ -483,7 +469,7 @@ function addResponseMsgWithDropdown() {
     <option value="CALL_CENTER">Call Center</option>
     <option value="Registrar_Office_Guidlines">Registrar Office Guidelines</option>
     <option value="Graduate_Program">Graduate Programs</option>
-    <option value="Library">Library</option>
+   // <option value="Library">Library</option>
     <option value="GCD">GCD</option>
     <option value="general">General</option>
     </select>
