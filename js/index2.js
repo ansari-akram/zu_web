@@ -338,7 +338,13 @@ function addResponseMsg(msg) {
 
 function addResponseMsgWithUrl(msg, url) {
   var div = document.createElement("div");
-  div.innerHTML = "<div class='chat-message-received more' id='minimize'>" + msg + "<br /><br />Please click on the link below to get more details.<br/><br/><a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + url + "</a></div>";
+  if (msg.includes('403')){
+	div.innerHTML = "<div class='chat-message-received more' id='minimize'> " + msg + "<br><a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + url + "</a><br /><br />Please click on the above link to get more details.</div>";
+  }
+  else {
+	  div.innerHTML = "<div class='chat-message-received more' id='minimize'><a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + url + "</a><br /><br />Please click on the above link to get more details.</div>";
+  }
+  
   div.className = "chat-message-div";
   document.getElementById("message-box").appendChild(div);
   document.getElementById("message-box").scrollTop = document.getElementById(
