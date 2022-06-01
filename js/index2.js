@@ -4,7 +4,7 @@ var running = false,
   name = "",
   email = "",
   dept = "",
-  server_api = '127.0.0.1:8000',
+  server_api = 'http://127.0.0.1:8000/chatbot/',
   message_box = document.getElementById('message-box');
 var response_list = [];
 var intents_list = [];
@@ -91,7 +91,7 @@ function addMsg(msg) {
       var intent = intents_list[0];
       // console.log(ques, ans);
       var data = { 'user_email': email, 'event_type': '', 'event_question': ques, 'event_answer': ans, 'intent': intent };
-      fetch("http://" + server_api + "/wrong_answer/", {
+      fetch(server_api + "/wrong_answer/", {
         method: "POST",
         body: JSON.stringify(data),
         headers: { 'Content-Type': 'application/json' },
@@ -110,7 +110,7 @@ function sendInputToWatson(input) {
   var data = { 'user_email': email, 'event_type': '4', 'event_question': input, 'session_value': '', 'intent': dept },
     unknown = "I didn't quite get that.",
     sorry = "Sorry, I am not able to detect the language you are asking.",
-    api = "http://127.0.0.1:8000/watson-assistant/";
+    api = server_api + "/watson-assistant/";
 
   // console.log(data);
 
@@ -230,7 +230,7 @@ function sendInputToWatson(input) {
 function transferLiveChat() {
   //logout
   var data = { 'user_email': email, 'event_type': '2', 'event_question': '', 'intent': dept };
-  fetch("http://" + server_api + "/login/", {
+  fetch(server_api + "/login/", {
     method: "POST",
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' },
@@ -241,7 +241,7 @@ function transferLiveChat() {
 
   // live chat count
   var data = { 'user_email': email, 'event_type': '6', 'event_question': '', 'intent': dept };
-  fetch("http://" + server_api + "/login/", {
+  fetch(server_api + "/login/", {
     method: "POST",
     body: JSON.stringify(data),
     headers: { 'Content-Type': 'application/json' },
@@ -337,9 +337,6 @@ function addResponseMsg(msg) {
 }
 
 function addResponseMsgWithUrl(msg, url) {
-
-  console.log('url', url, msg);
-
   var div = document.createElement("div");
   if (msg.includes('403')){
 	div.innerHTML = "<div class='chat-message-received more' id='minimize'> " + msg + "<br><a href='" + url + "' target='_blank' style='text-decoration: underline; color: blue;'>" + url + "</a><br /><br />Please click on the above link to get more details.</div>";
@@ -421,7 +418,7 @@ function clear_chatbot() {
 
   if (db_commit) {
     var data = { 'user_email': email, 'event_type': '7', 'event_question': '', 'intent': dept };
-    fetch("http://" + server_api + "/login/", {
+    fetch(server_api + "/login/", {
       method: "POST",
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json' },
@@ -469,8 +466,6 @@ function addResponseMsgWithDropdown() {
     <option value="CALL_CENTER">Call Center</option>
     <option value="Registrar_Office_Guidlines">Registrar Office Guidelines</option>
     <option value="Graduate_Program">Graduate Programs</option>
-   // <option value="Library">Library</option>
-    <option value="GCD">GCD</option>
     <option value="general">General</option>
     </select>
     <input type="button" class="dropdown-button" value="Submit" onclick="setDeptDropdown()"/><br />
@@ -489,7 +484,7 @@ function checkForm() {
     if (user_name != '' && dept != "") {
       if (document.getElementById("cred-form").classList.contains("active")) {
         var data = { 'user_email': email, 'event_type': '1', 'event_question': '', 'intent': dept };
-        fetch("http://" + server_api + "/login/", {
+        fetch(server_api + "/login/", {
           method: "POST",
           body: JSON.stringify(data),
           headers: { 'Content-Type': 'application/json' },
